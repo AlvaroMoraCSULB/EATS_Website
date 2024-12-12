@@ -1,0 +1,1 @@
+mongodb+srv://pabloguerrero:pg@cluster0.awxlg.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
