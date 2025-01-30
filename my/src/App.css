@@ -1,0 +1,153 @@
+/*.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}*/
+/* Reset styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body Styling */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  position: relative;
+background-color: #ecaa00;
+}
+
+/* Styling for the h1 */
+h1 {
+  margin: 20px;  /* Adjust space around the header */
+  text-align: center;  /* Optional: Center the header */
+}
+
+/* Hamburger Menu Container */
+.hamburger-menu {
+  position: absolute; /* Position relative to the body */
+  top: 100px;  /* Space it below the h1 (adjust if needed) */
+  left: 20px;
+  z-index: 1001; /* Ensure the hamburger icon is above other content */
+  display: flex;
+  align-items: center;  /* Center the text vertically with the hamburger */
+}
+
+/* Hamburger icon: Three horizontal bars */
+.hamburger-icon {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 25px;
+  cursor: pointer;
+}
+
+.hamburger-icon span {
+  width: 30px;
+  height: 5px;
+  background-color: #333;
+  transition: 0.3s ease-in-out;
+}
+
+/* Hide the checkbox, but it's still clickable */
+#menu-toggle {
+  display: none;
+}
+
+/* The menu - hidden initially */
+.menu {
+  display: none;
+  position: absolute;  /* Position the menu below the hamburger icon */
+  top: 50px;  /* Adjust to appear below the hamburger icon */
+  left: 0;
+  background-color: #333;
+  width: 200px;  /* Menu width */
+  border-radius: 5px;
+  z-index: 1000;
+  transition: transform 0.3s ease-in-out; /* Smooth transition */
+}
+
+/* Menu list styles */
+.menu ul {
+  list-style: none;
+  padding: 20px;
+}
+
+.menu li {
+  margin: 10px 0;
+}
+
+.menu li a {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  display: block;
+}
+
+/* When the checkbox is checked, show the menu and transform the hamburger icon */
+#menu-toggle:checked + .hamburger-icon span:nth-child(1) {
+  transform: rotate(45deg);
+  position: relative;
+  top: 8px;
+}
+
+#menu-toggle:checked + .hamburger-icon span:nth-child(2) {
+  opacity: 0;
+}
+
+#menu-toggle:checked + .hamburger-icon span:nth-child(3) {
+  transform: rotate(-45deg);
+  position: relative;
+  top: -8px;
+}
+
+/* When the checkbox is checked, display the menu by sliding it down */
+#menu-toggle:checked ~ .menu {
+  display: block;
+  transform: translateY(0); /* Move the menu into view */
+}
+
+/* New styles for the Login text */
+.menu-text {
+  margin-left: 10px;  /* Adds space between the hamburger icon and the text */
+  font-size: 20px;
+  font-weight: bold;  /* Optional: make the text bold */
+  cursor: pointer;
+}
+
