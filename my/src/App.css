@@ -128,7 +128,7 @@ h1 {
 }
 
 #menu-toggle:checked + .hamburger-icon span:nth-child(2) {
-  opacity: 0;
+  opacity: 0;   /* Hide the middle bar */
 }
 
 #menu-toggle:checked + .hamburger-icon span:nth-child(3) {
@@ -149,5 +149,49 @@ h1 {
   font-size: 20px;
   font-weight: bold;  /* Optional: make the text bold */
   cursor: pointer;
+}
+/* Ensure the menu does not overlap content */
+.hamburger-menu {
+  position: relative; /* Keeps it in normal document flow */
+  z-index: 10; /* Ensures it's above other elements */
+}
+
+/* Space between navigation and form */
+.register-container {
+  margin-top: 50px; /* Adjust if needed */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the form */
+}
+
+/* Styling the form */
+.register-container form {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  gap: 10px;
+}
+
+/* Style inputs for better appearance */
+.register-container input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+}
+
+/* Style the submit button */
+.register-container button {
+  padding: 10px;
+  background-color: #007bff; /* Makes button blue */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+/* Button hover effect */
+.register-container button:hover {
+  background-color: #0056b3;
 }
 
