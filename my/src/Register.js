@@ -1,11 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./App.css";
+import axios from "axios";
 
 const Register = () => {
+   // State to store user input (email, username, password)
+  const [userData, setUserData] = useState({
+    email: "",
+    username: "",
+    password: "",
+  });
+// Function to update state when input fields change
+  const handleChange = (e) => {
+    setUserData({ ...userData, [e.target.name]: e.target.value });
+  };
+// Function to handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Prevents page reload
+    try {
+      // Sends user data to backend for registration
+      const response = await axios.post("http://localhost:5000/register", userData);
+      alert(response.data.message); // Show success message
+    } catch (error) {
+      alert("Registration failed. Try again.");
+    }
+  };
+
   return (
     <div>
       <h1>Embedded Applications Technology Society</h1>
+
       {/* Hamburger Menu Structure */}
       <div className="hamburger-menu">
         <input type="checkbox" id="menu-toggle" />
@@ -31,6 +54,38 @@ const Register = () => {
             <li><Link to="/donations">Donations</Link></li>
           </ul>
         </nav>
+      </div>
+
+      {/* Registration Form */}
+      <div className="register-container">
+        <h2>Register</h2>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={userData.email}
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="text"
+            name="username"
+            placeholder="Username"
+            value={userData.username}
+            onChange={handleChange}
+            required
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={userData.password}
+            onChange={handleChange}
+            required
+          />
+          <button type="submit">Register</button>
+        </form>
       </div>
     </div>
   );
