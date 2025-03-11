@@ -3,25 +3,33 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const Register = () => {
-   // State to store user input (email, username, password)
+  // State to store user input (email, username, password)
   const [userData, setUserData] = useState({
     email: "",
     username: "",
     password: "",
   });
-// Function to update state when input fields change
+
+  // State to store registration success/error messages
+  const [message, setMessage] = useState("");
+
+  // Function to update state when input fields change
   const handleChange = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
-// Function to handle form submission
+
+  // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevents page reload
     try {
       // Sends user data to backend for registration
-      const response = await axios.post("http://localhost:5000/register", userData);
-      alert(response.data.message); // Show success message
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/register`, userData);
+      
+      // Show success message
+      setMessage(`Registration successful! ${response.data.is_officer ? "You are registered as an officer." : "You are registered as a regular user."}`);
     } catch (error) {
-      alert("Registration failed. Try again.");
+      // Show specific error message from the backend
+      setMessage(error.response?.data?.message || "Registration failed. Try again.");
     }
   };
 
@@ -86,6 +94,9 @@ const Register = () => {
           />
           <button type="submit">Register</button>
         </form>
+
+        {/* Display success/error messages */}
+        {message && <p className="message">{message}</p>}
       </div>
     </div>
   );

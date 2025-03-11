@@ -24,15 +24,26 @@ const Login = () => {
     setError(""); // Clear previous errors
 
     try {
-      const response = await axios.post("http://localhost:5000/login", userData);
-      
+      // Send login request to the backend
+	  const response = await axios.post(`${process.env.REACT_APP_API_URL}/login`, userData);
+
       if (response.data.token) {
-        localStorage.setItem("authToken", response.data.token); // Store token in localStorage
+        // Store token and user role in localStorage
+        localStorage.setItem("authToken", response.data.token);
+        localStorage.setItem("isOfficer", response.data.is_officer);
+
         alert("Login successful!");
-        navigate("/dashboard"); // Redirect to dashboard (change as needed)
+
+        // Redirect based on user role
+        if (response.data.is_officer) {
+          navigate("/officer-dashboard"); // Redirect to officer dashboard
+        } else {
+          navigate("/dashboard"); // Redirect to regular user dashboard
+        }
       }
     } catch (error) {
-      setError("Invalid email or password. Try again.");
+      // Show specific error message from the backend
+      setError(error.response?.data?.message || "Invalid email or password. Try again.");
     }
   };
 
