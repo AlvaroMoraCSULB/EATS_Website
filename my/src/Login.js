@@ -4,32 +4,29 @@ import axios from "axios";
 import "./App.css";
 
 const Login = () => {
-  // State to store user input
   const [userData, setUserData] = useState({
     email: "",
     password: "",
   });
 
-  const [error, setError] = useState(""); // Store error messages
-  const navigate = useNavigate(); // For redirecting users
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
 
-  // Handle input changes
   const handleChange = (e) => {
     setUserData({ ...userData, [e.target.name]: e.target.value });
   };
 
-  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(""); // Clear previous errors
+    setError("");
 
     try {
       const response = await axios.post("http://localhost:5000/login", userData);
-      
+
       if (response.data.token) {
-        localStorage.setItem("authToken", response.data.token); // Store token in localStorage
+        localStorage.setItem("authToken", response.data.token);
         alert("Login successful!");
-        navigate("/dashboard"); // Redirect to dashboard (change as needed)
+        navigate("/"); // Redirect to homepage
       }
     } catch (error) {
       setError("Invalid email or password. Try again.");
@@ -40,7 +37,6 @@ const Login = () => {
     <div>
       <h1>Embedded Applications Technology Society</h1>
 
-      {/* Hamburger Menu Structure */}
       <div className="hamburger-menu">
         <input type="checkbox" id="menu-toggle" />
         <label htmlFor="menu-toggle" className="hamburger-icon">
@@ -54,23 +50,14 @@ const Login = () => {
             <li><Link to="/">Home</Link></li>
             <li><Link to="/login">Login</Link></li>
             <li><Link to="/register">Register</Link></li>
-            <li><Link to="/officers">Officers</Link></li>
-            <li><Link to="/projects">Projects</Link></li>
-            <li><Link to="/videos">Videos</Link></li>
-            <li><Link to="/files">Files</Link></li>
             <li><Link to="/forum">Forum</Link></li>
-            <li><Link to="/calendar">Calendar</Link></li>
-            <li><Link to="/analytics">Analytics</Link></li>
-            <li><Link to="/maps">Maps</Link></li>
-            <li><Link to="/donations">Donations</Link></li>
           </ul>
         </nav>
       </div>
 
-      {/* Login Form */}
       <div className="register-container">
         <h2>Login</h2>
-        {error && <p style={{ color: "red" }}>{error}</p>} {/* Show error message if login fails */}
+        {error && <p style={{ color: "red" }}>{error}</p>}
         <form onSubmit={handleSubmit}>
           <input
             type="email"
