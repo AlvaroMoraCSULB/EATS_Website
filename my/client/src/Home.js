@@ -24,6 +24,7 @@ const Home = () => {
             <li><Link to="/register">Register</Link></li>
             <li><Link to="/officers">Officers</Link></li>
             <li><Link to="/projects">Projects</Link></li>
+			<li><Link to="/items">Items</Link></li>
             <li><Link to="/videos">Videos</Link></li>
             <li><Link to="/files">Files</Link></li>
             <li><Link to="/forum">Forum</Link></li>
