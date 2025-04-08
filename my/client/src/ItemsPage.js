@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import ItemCard from './ItemCard';
+import CartDisplay from './components/CartDisplay';  // Add this import
 
 const ItemsPage = () => {
   const [items, setItems] = useState([]);
@@ -25,7 +26,7 @@ const ItemsPage = () => {
     <div>
       <h1>Embedded Applications Technology Society</h1>
       
-      {/* Hamburger Menu - Positioned absolutely using your CSS classes */}
+      {/* Hamburger Menu */}
       <div className="hamburger-menu">
         <input type="checkbox" id="menu-toggle" />
         <label htmlFor="menu-toggle" className="hamburger-icon">
@@ -52,6 +53,9 @@ const ItemsPage = () => {
           </ul>
         </nav>
       </div>
+	  
+	  {/* Cart Display Component */}
+      <CartDisplay />
 
       {/* Items Container - Adjusted to account for header and menu */}
       <div style={{

@@ -25,7 +25,7 @@ const Login = () => {
 
     try {
       // Send login request to the backend
-	  const response = await axios.post(`${process.env.REACT_APP_API_URL}/login`, userData);
+	  const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/login`, userData);
 
       if (response.data.token) {
         // Store token and user role in localStorage
@@ -34,12 +34,8 @@ const Login = () => {
 
         alert("Login successful!");
 
-        // Redirect based on user role
-        if (response.data.is_officer) {
-          navigate("/officer-dashboard"); // Redirect to officer dashboard
-        } else {
-          navigate("/dashboard"); // Redirect to regular user dashboard
-        }
+		// Redirect to Home page after login
+        navigate("/");
       }
     } catch (error) {
       // Show specific error message from the backend
