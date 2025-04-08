@@ -3,7 +3,8 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const authRoutes = require("./routes/authRoutes");
-const itemRoutes = require("./routes/itemRoutes"); // 1. Import the items routes
+const itemRoutes = require("./routes/itemRoutes");
+const cartRoutes = require("./routes/cartRoutes"); // 1. Import the new cart routes
 
 const app = express();
 
@@ -21,7 +22,8 @@ mongoose.connect(process.env.MONGO_URI)
 
 // Routes
 app.use("/api/auth", authRoutes);
-app.use("/api/items", itemRoutes); // 2. Add this line to enable items routes
+app.use("/api/items", itemRoutes);
+app.use("/api/cart", cartRoutes); // 2. Add this line to enable cart routes
 
 // Start server
 const PORT = process.env.PORT || 5000;
