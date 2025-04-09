@@ -4,13 +4,35 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const multer = require("multer");
+const path = require("path");
+const fs = require("fs");
+
 const app = express();
 app.use(express.json());
 app.use(cors());
 
 mongoose.connect(process.env.MONGO_URI);
 
-// Define User Schema
+// Serve uploaded files statically
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+// Set up multer for file uploads
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    const uploadPath = path.join(__dirname, "uploads");
+    if (!fs.existsSync(uploadPath)) {
+      fs.mkdirSync(uploadPath);
+    }
+    cb(null, "uploads/");
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.originalname);
+  },
+});
+const upload = multer({ storage: storage });
+
+// User schema
 const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   username: { type: String, required: true, unique: true },
@@ -19,7 +41,7 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", userSchema);
 
-// Define Thread Schema
+// Thread schema
 const threadSchema = new mongoose.Schema({
   author: String,
   content: String,
@@ -28,7 +50,7 @@ const threadSchema = new mongoose.Schema({
 
 const Thread = mongoose.model("Thread", threadSchema);
 
-// Middleware for authentication
+// Authentication middleware
 const authenticate = (req, res, next) => {
   const token = req.header("Authorization")?.split(" ")[1];
   if (!token) return res.status(401).json({ message: "Unauthorized" });
@@ -42,7 +64,7 @@ const authenticate = (req, res, next) => {
   }
 };
 
-// Register User
+// Register endpoint
 app.post("/register", async (req, res) => {
   try {
     const { email, username, password } = req.body;
@@ -58,7 +80,7 @@ app.post("/register", async (req, res) => {
   }
 });
 
-// Login User
+// Login endpoint
 app.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -75,7 +97,49 @@ app.post("/login", async (req, res) => {
   }
 });
 
-// Create Thread
+// Get profile endpoint
+app.get("/profile", authenticate, async (req, res) => {
+  try {
+    const user = await User.findById(req.userId);
+    if (!user) return res.status(404).json({ message: "User not found" });
+    res.json({ email: user.email });
+  } catch {
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+// Upload file endpoint (only for authorized email)
+app.post("/upload", authenticate, upload.single("file"), async (req, res) => {
+  try {
+    const user = await User.findById(req.userId);
+
+    if (user.email !== "eatsrules123@gmail.com") {
+      return res.status(403).json({ message: "Forbidden: Only authorized officer can upload" });
+    }
+
+    if (!req.file) {
+      return res.status(400).json({ message: "No file received by server" });
+    }
+
+    console.log("Upload successful:", req.file.filename);
+    res.status(200).json({ message: "File uploaded successfully", file: req.file.filename });
+  } catch (err) {
+    console.error("Upload error:", err);
+    res.status(500).json({ message: "Upload error", error: err.message });
+  }
+});
+
+
+// Fetch list of uploaded files
+app.get("/files", (req, res) => {
+  const uploadDir = path.join(__dirname, "uploads");
+  fs.readdir(uploadDir, (err, files) => {
+    if (err) return res.status(500).json({ message: "Unable to list files" });
+    res.json(files);
+  });
+});
+
+// Create thread
 app.post("/threads", authenticate, async (req, res) => {
   try {
     const user = await User.findById(req.userId);
@@ -87,7 +151,7 @@ app.post("/threads", authenticate, async (req, res) => {
   }
 });
 
-// Fetch Threads
+// Fetch threads
 app.get("/threads", async (req, res) => {
   try {
     const threads = await Thread.find();
@@ -97,7 +161,7 @@ app.get("/threads", async (req, res) => {
   }
 });
 
-// Add Comment
+// Add comment
 app.post("/threads/:id/comments", authenticate, async (req, res) => {
   try {
     const user = await User.findById(req.userId);
