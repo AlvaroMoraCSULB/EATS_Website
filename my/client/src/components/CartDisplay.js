@@ -78,7 +78,7 @@ const CartDisplay = () => {
             We are currently not taking online orders right now.
           </p>
           <p style={{ margin: '0 0 15px 0' }}>
-            Sorry for the inconvenience.
+            We apologize for the inconvenience.
           </p>
           <button
             onClick={() => setShowOrderMessage(false)}
