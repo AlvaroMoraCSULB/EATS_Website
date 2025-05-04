@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import { Link } from "react-router-dom";
-
+import SocialMediaLinks from "./SocialMediaLinks"; 
 
 const Home = () => {
   return (
@@ -34,6 +34,11 @@ const Home = () => {
           </ul>
         </nav>
       </div>
+      
+      {/* Social Media Links Section */}
+      <div className="social-links-wrapper">
+      <SocialMediaLinks />
+    </div>
     </div>
   );
 };

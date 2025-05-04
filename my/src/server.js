@@ -14,10 +14,13 @@ app.use(cors());
 
 mongoose.connect(process.env.MONGO_URI);
 
-// Serve uploaded files statically
+// Serve regular uploaded files
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-// Set up multer for file uploads
+// Serve officer videos from a new folder
+app.use("/officer_videos", express.static(path.join(__dirname, "officer_videos")));
+
+// Set up multer for regular file uploads
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     const uploadPath = path.join(__dirname, "uploads");
@@ -128,7 +131,6 @@ app.post("/upload", authenticate, upload.single("file"), async (req, res) => {
     res.status(500).json({ message: "Upload error", error: err.message });
   }
 });
-
 
 // Fetch list of uploaded files
 app.get("/files", (req, res) => {
