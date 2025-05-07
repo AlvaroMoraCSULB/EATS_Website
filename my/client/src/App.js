@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { AuthProvider } from './context/authContext';
 import { CartProvider } from './context/cartContext';
-import ProtectedRoute from './components/ProtectedRoute';
+import Navbar from './components/Navbar';
 import Home from "./Home";
 import Files from "./Files";
 import Register from "./Register";
@@ -13,22 +13,24 @@ import Projects from "./Projects";
 import Calendar from "./Calendar";
 import Videos from "./Videos";
 import Donations from "./Donations";
-import './App.css';
 import Analytics from "./Analytics";
 import Login from "./Login";
-import ItemsPage from "./ItemsPage"; 
+import ItemsPage from "./ItemsPage";
+import "./App.css";
 
 function App() {
   return (
     <Router>
       <AuthProvider>
         <CartProvider>
-          <div className="App">
+          <h1 className="main-title">Embedded Applications Technology Society</h1>
+          <Navbar />
+          <div className="app-content">
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/files" element={<Files />} />
-			  <Route path="/login" element={<Login />} />
+              <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
+              <Route path="/files" element={<Files />} />
               <Route path="/officers" element={<Officers />} />
               <Route path="/forum" element={<Forum />} />
               <Route path="/calendar" element={<Calendar />} />
@@ -45,6 +47,5 @@ function App() {
     </Router>
   );
 }
-
 
 export default App;

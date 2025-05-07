@@ -294,3 +294,97 @@ h1 {
   background: #d69900;
 }
 
+/* ===== NAVBAR STYLES ===== */
+.navbar-wrapper {
+  width: 100%;
+  background-color: #ecaa00; /* Matches your page background */
+  padding: 0 20px;
+  margin-top: 10px; /* Space below h1 */
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+}
+
+/* Left side (menu button + page title) */
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Space between menu icon and title */
+}
+
+.menu-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333;
+  padding: 5px;
+}
+
+.page-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+}
+
+/* Right side (profile icon) */
+.profile-icon {
+  cursor: pointer;
+  color: #333;
+}
+
+/* Side Menu (Dark Grey) */
+.sidebar-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100vh;
+  background: #333; /* Your requested grey */
+  z-index: 1001;
+  padding: 15px;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+}
+
+.menu-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 40px;
+}
+
+.menu-item {
+  padding: 12px 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  color: white;
+  border-bottom: 1px solid #444;
+  transition: background 0.2s;
+}
+
+.menu-item:hover {
+  background: #444;
+}
+
+.menu-item.active {
+  background: #555;
+}
+
+.menu-item svg {
+  flex-shrink: 0;
+}
