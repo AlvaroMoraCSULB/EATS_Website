@@ -34,7 +34,7 @@ function Navbar() {
     { path: "/videos", label: "Videos", icon: <Video size={18} /> },
     { path: "/forum", label: "Forum", icon: <MessageCircle size={18} /> },
     { path: "/calendar", label: "Calendar", icon: <Calendar size={18} /> },
-    { path: "/maps", label: "Google Maps", icon: <Map size={18} /> },
+    { path: "/maps", label: "Maps", icon: <Map size={18} /> },
     { path: "/donations", label: "Donations", icon: <DollarSign size={18} /> },
     { path: "/analytics", label: "Analytics", icon: <BarChart size={18} /> },
   ];
