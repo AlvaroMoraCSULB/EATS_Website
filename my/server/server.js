@@ -9,6 +9,7 @@ const authRoutes = require("./routes/authRoutes");
 const itemRoutes = require("./routes/itemRoutes");
 const cartRoutes = require("./routes/cartRoutes"); 
 const profileRoutes = require('./routes/profileRoutes');
+const fileRoutes = require('./routes/fileRoutes');
 
 const app = express();
 
@@ -28,6 +29,9 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage: storage });
 
+// Serve static uploads via express
+app.use('/uploads', express.static(path.join(__dirname, '../client/public/uploads')));
+
 // Middleware
 app.use(express.json());
 app.use(cors({
@@ -45,6 +49,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/items", itemRoutes);
 app.use("/api/cart", cartRoutes); 
 app.use('/api/profile', profileRoutes);
+app.use('/api/files', fileRoutes);
 
 // Start server
 const PORT = process.env.PORT || 5000;
