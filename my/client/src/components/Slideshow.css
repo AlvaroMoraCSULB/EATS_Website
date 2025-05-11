@@ -2,10 +2,13 @@
   position: absolute;
   right: 0;
   top: 80px; 
-  width: 60%;
-  height: calc(100vh - 20px); 
+  width: 50%; /* Reduced from 60% */
+  height: 70vh; /* Changed from full viewport height */
   overflow: hidden;
-  z-index: 1;
+  z-index: 1; /* Keep this lower than social media z-index */
+  border-radius: 10px; /* Optional: adds rounded corners */
+  margin-right: 20px; /* Adds some space from the right edge */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Optional: adds depth */
 }
 
 .slide {
@@ -28,10 +31,11 @@
   left: 20px;
   color: white;
   background-color: rgba(0, 0, 0, 0.5);
-  padding: 8px 16px; 
+  padding: 8px 16px;
   border-radius: 5px;
-  font-size: 0.8rem; 
-  max-width: 60%; 
+  font-size: 0.8rem;
+  max-width: 60%;
+  z-index: 2; /* Ensures captions stay above slides */
 }
 
 .slideshow-dots {
