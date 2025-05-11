@@ -388,3 +388,32 @@ h1 {
 .menu-item svg {
   flex-shrink: 0;
 }
+
+/* Profile image in navbar */
+.profile-image-small {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid #ecaa00;
+}
+
+.profile-badge {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+/* Navbar right side */
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Active menu item */
+.menu-item.active {
+  background-color: rgba(236, 170, 0, 0.2);
+  border-left: 3px solid #ecaa00;
+}
