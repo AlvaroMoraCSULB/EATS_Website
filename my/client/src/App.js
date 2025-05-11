@@ -17,6 +17,7 @@ import Donations from "./Donations";
 import Analytics from "./Analytics";
 import Login from "./Login";
 import ItemsPage from "./ItemsPage";
+import Profile from "./Profile";
 import "./App.css";
 
 function App() {
@@ -41,6 +42,10 @@ function App() {
               <Route path="/videos" element={<Videos />} />
               <Route path="/donations" element={<Donations />} />
               <Route path="/analytics" element={<Analytics />} />
+			  <Route path="/profile" element={
+				  <ProtectedRoute>
+					<Profile />
+				  </ProtectedRoute> } />
             </Routes>
           </div>
         </CartProvider>
