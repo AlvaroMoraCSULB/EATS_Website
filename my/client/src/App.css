@@ -448,15 +448,11 @@ h1 {
 
 /* Social Media Styling */
 .social-links-wrapper {
-  margin-top: 20px; /* small space after hamburger */
-  display: flex;
-  justify-content: center;
-  position: relative;
-  z-index: 10; /* Higher than other elements that might cover it */
-  margin: 30px auto; /* Adds more space around */
-  padding: 20px 0;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
 }
-
 .social-media-container {
   display: flex;
   justify-content: center;

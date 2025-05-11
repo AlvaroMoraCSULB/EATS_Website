@@ -11,7 +11,7 @@ const SocialMediaLinks = () => {
         <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram" className="social-icon" />
       </a>
       <a href="https://discord.gg/yourinvite" target="_blank" rel="noopener noreferrer">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/Discord_logo.svg" alt="Discord" className="social-icon" />
+      <img src="https://logowik.com/content/uploads/images/discord-icon9600.logowik.com.webp" alt="Discord" className="social-icon" />
       </a>
     </div>
   );
