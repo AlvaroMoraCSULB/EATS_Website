@@ -13,6 +13,7 @@ import Maps from "./Maps";
 import Projects from "./Projects";
 import Calendar from "./Calendar";
 import Videos from "./Videos";
+import VideoPlayer from "./VideoPlayer";
 import Donations from "./Donations";
 import Analytics from "./Analytics";
 import Login from "./Login";
@@ -40,6 +41,7 @@ function App() {
               <Route path="/projects" element={<Projects />} />
               <Route path="/items" element={<ItemsPage />} />
               <Route path="/videos" element={<Videos />} />
+			  <Route path="/videos/:videoId" element={<VideoPlayer />} />
               <Route path="/donations" element={<Donations />} />
               <Route path="/analytics" element={<Analytics />} />
 			  <Route path="/profile" element={
