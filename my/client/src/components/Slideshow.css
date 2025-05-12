@@ -1,14 +1,14 @@
 .slideshow-container {
   position: absolute;
   right: 0;
-  top: 80px; 
-  width: 50%; /* Reduced from 60% */
-  height: 70vh; /* Changed from full viewport height */
+  top: 120px; 
+  width: 50%; 
+  height: 65vh; 
   overflow: hidden;
-  z-index: 1; /* Keep this lower than social media z-index */
-  border-radius: 10px; /* Optional: adds rounded corners */
-  margin-right: 20px; /* Adds some space from the right edge */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Optional: adds depth */
+  z-index: 1; 
+  border-radius: 10px; 
+  margin-right: 20px; 
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
 }
 
 .slide {
