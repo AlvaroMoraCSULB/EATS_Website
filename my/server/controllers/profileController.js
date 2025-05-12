@@ -13,7 +13,7 @@ exports.uploadProfilePic = async (req, res) => {
 
     // Delete old file if exists
     if (oldFilename) {
-      const oldPath = path.join(__dirname, `../../client/public/profile_pics/uploaded/${oldFilename}`);
+      const oldPath = path.join(__dirname, '../../client/public/profile_pics/uploaded', oldFilename);
       if (fs.existsSync(oldPath)) {
         fs.unlinkSync(oldPath);
       }
@@ -28,10 +28,24 @@ exports.uploadProfilePic = async (req, res) => {
 
     res.json({
       message: "Profile picture updated successfully",
-      user: updatedUser
+      user: updatedUser,
+      profilePicUrl: `/profile_pics/uploaded/${req.file.filename}`
     });
+
   } catch (error) {
     console.error('Profile picture update error:', error);
-    res.status(500).json({ message: "Failed to update profile picture" });
+    
+    // Clean up if error occurred
+    if (req.file) {
+      const filePath = path.join(__dirname, '../../client/public/profile_pics/uploaded', req.file.filename);
+      if (fs.existsSync(filePath)) {
+        fs.unlinkSync(filePath);
+      }
+    }
+    
+    res.status(500).json({ 
+      message: "Failed to update profile picture",
+      error: process.env.NODE_ENV === 'development' ? error.message : undefined
+    });
   }
 };

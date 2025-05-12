@@ -15,23 +15,10 @@ const forumRoutes = require('./routes/forumRoutes');
 const app = express();
 
 
-// Set up multer for file uploads
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    const uploadPath = path.join(__dirname, "uploads");
-    if (!fs.existsSync(uploadPath)) {
-      fs.mkdirSync(uploadPath);
-    }
-    cb(null, "uploads/");
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.originalname);
-  },
-});
-const upload = multer({ storage: storage });
 
-// Serve static uploads via express
-app.use('/uploads', express.static(path.join(__dirname, '../client/public/uploads')));
+
+// Express static file serving
+app.use('/profile_pics', express.static(path.join(__dirname, '../client/public/profile_pics')));
 
 // Middleware
 app.use(express.json());
