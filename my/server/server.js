@@ -10,6 +10,7 @@ const itemRoutes = require("./routes/itemRoutes");
 const cartRoutes = require("./routes/cartRoutes"); 
 const profileRoutes = require('./routes/profileRoutes');
 const fileRoutes = require('./routes/fileRoutes');
+const forumRoutes = require('./routes/forumRoutes');
 
 const app = express();
 
@@ -50,6 +51,7 @@ app.use("/api/items", itemRoutes);
 app.use("/api/cart", cartRoutes); 
 app.use('/api/profile', profileRoutes);
 app.use('/api/files', fileRoutes);
+app.use("/api/forum", forumRoutes);
 
 // Start server
 const PORT = process.env.PORT || 5000;
