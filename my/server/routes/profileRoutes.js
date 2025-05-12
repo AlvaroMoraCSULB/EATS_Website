@@ -7,7 +7,7 @@ const fileUpload = require('../middleware/fileUpload');
 router.patch(
   '/picture',
   authMiddleware,
-  fileUpload,
+  profileUpload.single('profilePic'), // Use the dedicated profile upload middleware
   profileController.uploadProfilePic
 );
 
