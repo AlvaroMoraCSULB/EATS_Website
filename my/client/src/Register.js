@@ -23,7 +23,7 @@ const Register = () => {
     e.preventDefault(); // Prevents page reload
     try {
       // Sends user data to backend for registration
-      const response = await axios.post(`${process.env.REACT_APP_API_URL}/register`, userData);
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/auth/register`, userData);
       
       // Show success message
       setMessage(`Registration successful! ${response.data.is_officer ? "You are registered as an officer." : "You are registered as a regular user."}`);
